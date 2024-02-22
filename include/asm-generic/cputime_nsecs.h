@@ -44,7 +44,10 @@ typedef u64 __nocast cputime64_t;
 /*
  * Convert cputime <-> nanoseconds
  */
-#define nsecs_to_cputime(__nsecs)	((__force u64)(__nsecs))
+#define cputime_to_nsecs(__ct)		\
+	(__force u64)(__ct)
+#define nsecs_to_cputime(__nsecs)	\
+	(__force cputime_t)(__nsecs)
 
 
 /*
@@ -112,3 +115,4 @@ static inline void cputime_to_timeval(const cputime_t ct, struct timeval *val)
 	cputime_to_clock_t((__force cputime_t)__ct)
 
 #endif
+
